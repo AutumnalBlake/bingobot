@@ -15,8 +15,24 @@ async def on_message(message):
         return
 
     print (f"{message.author}: {message.content}")
+    print (message.channel.members)
 
-    await message.channel.send(message.content)
+    if message.content.startswith('!bingo'):
+        ch = message.channel
+        ch_memb_ids = [m.id for m in ch.members]
+        tags = message.mentions
+        if len(tags) != 1:
+            await message.channel.send(f"<@{message.author.id}> usage: `!bingo <@user>` to start a game with another player")
+            return
+        p2 = tags[0].id
+        if p2 not in ch_memb_ids:
+            await message.channel.send(f"<@{message.author.id}> second player must be a member of this channel!")
+            return
+        await message.channel.send(f"<@{message.author.id}> successful")
+        
+        
+
+
 
 # Just for fun
 # @client.event
