@@ -1,15 +1,15 @@
 import random
 
 class BingoGame:
-	def __init__(self, player1, player2, channel, size = 5, freespace = True):
+	def __init__(self, player1, player2, size = 5, freespace = True):
 		if size not in (3, 5, 7):
 			raise ValueError("Size must be 3, 5 or 7")
 
 		self.players = (player1, player2)
-		self.channel = channel
 		self.size = size
 
 		self.drawn = ["FS"]
+		self.is_finished = False
 		
 		# Numbers are chosen from 1 to twice the grid size
 		# e.g. for a 5x5 grid, numbers are chosen from 1 to 50
@@ -44,7 +44,7 @@ class BingoGame:
 		self.numChoices.remove(num)
 		return num
 
-	def hasBingo(self, player):
+	def has_bingo(self, player):
 		if player not in (0, 1):
 			raise ValueError("Player must be an index 0 or 1")
 		
@@ -67,8 +67,7 @@ class BingoGame:
 
 		return False
 
+	def end(self):
+		self.is_finished = True
 
-b = BingoGame("autumnalblake", "asjhdfkagsjdaksjdf", 3, 5, True)
-print(b)
-while not b.hasBingo(0) and not b.hasBingo(1):
-	print(b.draw())
+
