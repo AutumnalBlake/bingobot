@@ -67,7 +67,7 @@ async def bingo_call(channel, player):
         await channel.send(f"BINGO! {player.name} wins!")
     
     else:
-        await channel.send(f"You don't have a bingo yet! +{BINGO_DELAY}s penalty")
+        await channel.send(f"You don't have a bingo yet!")
 
 async def show_help(channel):
     await channel.send(f"""```
