@@ -171,7 +171,7 @@ async def on_message(message):
                     size = 7
                 await create_invite(message.channel, message.author, message.mentions[0], (size, fs))
 
-    if not message.content.startswith('!') and 'BINGO' in message.content.upper():
+    if not message.content.startswith('!') and 'BINGO' in message.content.upper() and message.channel in active_games.keys():
         await bingo_call(message.channel, message.author)
 
 
